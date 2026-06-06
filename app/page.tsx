@@ -1,23 +1,39 @@
 "use client";
 
 import { FormEvent, ReactNode, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+const viewportOnce = { once: true, margin: "-80px" } as const;
+
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: smoothEase },
+  },
+};
 
 const fadeUp = {
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  initial: "hidden",
+  whileInView: "show",
+  viewport: viewportOnce,
+  variants: fadeUpVariants,
 };
 
 const stagger = {
-  initial: {},
-  whileInView: {
-    transition: {
-      staggerChildren: 0.1,
+  initial: "hidden",
+  whileInView: "show",
+  viewport: viewportOnce,
+  variants: {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.1,
+      },
     },
   },
-  viewport: { once: true, margin: "-80px" },
 };
 
 const phoneStats = [
@@ -146,7 +162,7 @@ function PhoneMockup() {
     <motion.div
       initial={{ opacity: 0, y: 42, rotate: -2 }}
       animate={{ opacity: 1, y: 0, rotate: 0 }}
-      transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.9, delay: 0.15, ease: smoothEase }}
       className="relative mx-auto w-full max-w-[330px] sm:max-w-[370px]"
     >
       <div className="absolute -inset-10 rounded-full bg-[#8c5bff]/25 blur-3xl" />
@@ -337,7 +353,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center lg:text-left"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#b88cff]/25 bg-[#9d6cff]/10 px-4 py-2 text-sm font-medium text-[#d9c7ff]">
@@ -395,7 +411,7 @@ export default function Home() {
             {problemStats.map((item) => (
               <motion.div
                 key={item.label}
-                variants={fadeUp}
+                variants={fadeUpVariants}
                 whileHover={{ y: -6, scale: 1.015 }}
                 className="glass-panel premium-border rounded-[2rem] p-6"
               >
@@ -432,7 +448,7 @@ export default function Home() {
             {insights.map((insight, index) => (
               <motion.div
                 key={insight}
-                variants={fadeUp}
+                variants={fadeUpVariants}
                 whileHover={{ y: -10, scale: 1.02 }}
                 className="glass-panel premium-border group rounded-[2rem] p-7 transition"
               >
@@ -523,7 +539,7 @@ export default function Home() {
             {features.map((feature, index) => (
               <motion.article
                 key={feature.title}
-                variants={fadeUp}
+                variants={fadeUpVariants}
                 whileHover={{ y: -8, scale: 1.015 }}
                 className="glass-panel premium-border rounded-[2rem] p-6"
               >
@@ -582,7 +598,7 @@ export default function Home() {
             {faqs.map((faq) => (
               <motion.details
                 key={faq.question}
-                variants={fadeUp}
+                variants={fadeUpVariants}
                 className="glass-panel group rounded-3xl p-6 open:bg-white/[0.08]"
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-semibold text-white">
