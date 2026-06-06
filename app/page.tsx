@@ -144,7 +144,13 @@ function SectionEyebrow({ children }: { children: ReactNode }) {
   );
 }
 
-function PrimaryButton({ children, href }: { children: ReactNode; href: string }) {
+function PrimaryButton({
+  children,
+  href,
+}: {
+  children: ReactNode;
+  href: string;
+}) {
   return (
     <motion.a
       href={href}
@@ -179,7 +185,9 @@ function PhoneMockup() {
               <div className="mt-3 flex items-end justify-between">
                 <div>
                   <p className="text-sm text-white/50">Weekly time</p>
-                  <h3 className="text-3xl font-semibold tracking-tight text-white">119h</h3>
+                  <h3 className="text-3xl font-semibold tracking-tight text-white">
+                    119h
+                  </h3>
                 </div>
                 <div className="rounded-full border border-[#b88cff]/30 bg-[#b88cff]/10 px-3 py-1 text-xs font-medium text-[#d9c7ff]">
                   AI ready
@@ -189,12 +197,21 @@ function PhoneMockup() {
               <div className="mt-6 grid grid-cols-[1fr_auto] gap-5">
                 <div className="space-y-3">
                   {phoneStats.map((item) => (
-                    <div key={item.label} className="flex items-center justify-between gap-3">
+                    <div
+                      key={item.label}
+                      className="flex items-center justify-between gap-3"
+                    >
                       <div className="flex items-center gap-2">
-                        <span className={`h-2.5 w-2.5 rounded-full ${item.color}`} />
-                        <span className="text-xs text-white/60">{item.label}</span>
+                        <span
+                          className={`h-2.5 w-2.5 rounded-full ${item.color}`}
+                        />
+                        <span className="text-xs text-white/60">
+                          {item.label}
+                        </span>
                       </div>
-                      <span className="text-sm font-semibold text-white">{item.value}</span>
+                      <span className="text-sm font-semibold text-white">
+                        {item.value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -211,8 +228,8 @@ function PhoneMockup() {
                   </p>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-white/78">
-                  You spent more time commuting than exercising. Moving one trip remote could recover
-                  2.4 hours next week.
+                  You spent more time commuting than exercising. Moving one trip
+                  remote could recover 2.4 hours next week.
                 </p>
               </div>
 
@@ -327,7 +344,7 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
       <div className="min-h-6 sm:absolute">
         {status === "success" && (
           <p className="pt-1 text-center text-sm font-medium text-[#d9c7ff] sm:text-left">
-              You&apos;re on the list.
+            You&apos;re on the list.
           </p>
         )}
 
@@ -360,11 +377,17 @@ export default function Home() {
           transition={{ duration: 0.55 }}
           className="glass-panel mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-3"
         >
-          <a href="#top" className="flex items-center gap-3" aria-label="Hora home">
+          <a
+            href="#top"
+            className="flex items-center gap-3"
+            aria-label="Hora home"
+          >
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-xs font-black tracking-tight text-black">
               H
             </span>
-            <span className="text-sm font-black tracking-[0.28em] text-white">HORA</span>
+            <span className="text-sm font-black tracking-[0.28em] text-white">
+              HORA
+            </span>
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-white/68 sm:flex">
             <a className="transition hover:text-white" href="#features">
@@ -383,7 +406,10 @@ export default function Home() {
         </motion.nav>
       </header>
 
-      <section id="top" className="relative z-10 px-4 pb-24 pt-36 sm:px-6 sm:pb-32 sm:pt-44">
+      <section
+        id="top"
+        className="relative z-10 px-4 pb-24 pt-36 sm:px-6 sm:pb-32 sm:pt-44"
+      >
         <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
             initial={{ opacity: 0, y: 36 }}
@@ -399,8 +425,8 @@ export default function Home() {
               See Where Your Life Goes.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/68 sm:text-xl lg:mx-0">
-              Track your time automatically. Discover where your hours are spent. Get
-              AI-powered weekly reports about your life.
+              Track your time automatically. Discover where your hours are
+              spent. Get AI-powered weekly reports about your life.
             </p>
             <div className="mt-9 flex flex-col items-center gap-5 sm:flex-row lg:justify-start">
               <PrimaryButton href="#waitlist">Join the Waitlist</PrimaryButton>
@@ -427,7 +453,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 py-20 sm:px-6" aria-labelledby="problem-heading">
+      <section
+        className="relative z-10 px-4 py-20 sm:px-6"
+        aria-labelledby="problem-heading"
+      >
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="mx-auto max-w-3xl text-center">
             <SectionEyebrow>The problem</SectionEyebrow>
@@ -450,7 +479,9 @@ export default function Home() {
                 whileHover={{ y: -6, scale: 1.015 }}
                 className="glass-panel premium-border rounded-[2rem] p-6"
               >
-                <p className="text-sm font-medium text-white/48">{item.label}</p>
+                <p className="text-sm font-medium text-white/48">
+                  {item.label}
+                </p>
                 <p className="mt-4 text-5xl font-semibold tracking-[-0.06em] text-white">
                   {item.value}
                 </p>
@@ -467,13 +498,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 py-20 sm:px-6 text-center" aria-labelledby="insights-heading">
+      <section
+        className="relative z-10 px-4 py-20 sm:px-6 text-center"
+        aria-labelledby="insights-heading"
+      >
         <div className="mx-auto max-w-6xl">
-          <motion.div {...fadeUp} className="max-w-3xl">
+          <motion.div {...fadeUp} className="mx-auto max-w-3xl text-center">
             <SectionEyebrow>AI insights</SectionEyebrow>
             <h2
               id="insights-heading"
-              className="text-balance text-4xl font-semibold tracking-[-0.045em] text-white sm:text-6xl text-center"
+              className="text-balance text-4xl font-semibold tracking-[-0.045em] text-white sm:text-6xl"
             >
               Turn ordinary weeks into life-changing signals.
             </h2>
@@ -490,7 +524,9 @@ export default function Home() {
                 <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#9d6cff]/16 text-[#d9c7ff] transition group-hover:bg-[#9d6cff]/28">
                   <IconOrbit />
                 </div>
-                <p className="text-xl font-medium leading-8 text-white">{insight}</p>
+                <p className="text-xl font-medium leading-8 text-white">
+                  {insight}
+                </p>
                 <div className="mt-8 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
                   <motion.div
                     initial={{ width: 0 }}
@@ -506,7 +542,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 py-20 sm:px-6" aria-labelledby="wrapped-heading">
+      <section
+        className="relative z-10 px-4 py-20 sm:px-6"
+        aria-labelledby="wrapped-heading"
+      >
         <motion.div
           {...fadeUp}
           className="glass-panel premium-border mx-auto max-w-6xl overflow-hidden rounded-[2.25rem] p-6 sm:rounded-[3rem] sm:p-10"
@@ -522,15 +561,15 @@ export default function Home() {
                 Spotify Wrapped For Your Life
               </h2>
               <p className="mt-6 text-lg leading-8 text-white/65">
-                Your year, translated into the places, routines, relationships, and tradeoffs that
-                actually shaped it.
+                Your year, translated into the places, routines, relationships,
+                and tradeoffs that actually shaped it.
               </p>
               <div className="mt-8 rounded-3xl border border-[#b88cff]/20 bg-[#9d6cff]/12 p-5">
                 <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#d9c7ff]">
                   AI Summary
                 </p>
                 <p className="mt-3 text-2xl font-semibold leading-snug text-white">
-                You spent 84 days at work and 6 days at the gym this year.
+                  You spent 84 days at work and 6 days at the gym this year.
                 </p>
               </div>
             </div>
@@ -570,7 +609,10 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <motion.div {...stagger} className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            {...stagger}
+            className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+          >
             {features.map((feature, index) => (
               <motion.article
                 key={feature.title}
@@ -579,7 +621,9 @@ export default function Home() {
                 className="glass-panel premium-border rounded-[2rem] p-6"
               >
                 <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.07] text-[#d9c7ff]">
-                  <span className="text-sm font-black">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-sm font-black">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
                 <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">
                   {feature.title}
@@ -609,8 +653,8 @@ export default function Home() {
             Be First To See Where Your Life Goes
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/62">
-            Join the early list for product updates, private beta invites, and the first Hora life
-            report.
+            Join the early list for product updates, private beta invites, and
+            the first Hora life report.
           </p>
           <div className="relative mt-10">
             <WaitlistForm />
@@ -618,7 +662,11 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section id="faq" className="relative z-10 px-4 py-20 sm:px-6" aria-labelledby="faq-heading">
+      <section
+        id="faq"
+        className="relative z-10 px-4 py-20 sm:px-6"
+        aria-labelledby="faq-heading"
+      >
         <div className="mx-auto max-w-4xl">
           <motion.div {...fadeUp} className="text-center">
             <SectionEyebrow>FAQ</SectionEyebrow>
@@ -642,7 +690,9 @@ export default function Home() {
                     +
                   </span>
                 </summary>
-                <p className="mt-4 max-w-2xl leading-7 text-white/58">{faq.answer}</p>
+                <p className="mt-4 max-w-2xl leading-7 text-white/58">
+                  {faq.answer}
+                </p>
               </motion.details>
             ))}
           </motion.div>
@@ -651,17 +701,31 @@ export default function Home() {
 
       <footer className="relative z-10 border-t border-white/10 px-4 py-10 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <a href="#top" className="mx-auto flex items-center gap-3 sm:mx-0" aria-label="Hora home">
+          <a
+            href="#top"
+            className="mx-auto flex items-center gap-3 sm:mx-0"
+            aria-label="Hora home"
+          >
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-xs font-black tracking-tight text-black">
               H
             </span>
-            <span className="text-sm font-black tracking-[0.28em] text-white">HORA</span>
+            <span className="text-sm font-black tracking-[0.28em] text-white">
+              HORA
+            </span>
           </a>
           <div className="flex justify-center gap-6 text-sm font-medium text-white/50">
-            <a className="transition hover:text-white" href="https://www.tiktok.com" rel="noreferrer">
+            <a
+              className="transition hover:text-white"
+              href="https://www.tiktok.com"
+              rel="noreferrer"
+            >
               TikTok
             </a>
-            <a className="transition hover:text-white" href="https://twitter.com" rel="noreferrer">
+            <a
+              className="transition hover:text-white"
+              href="https://twitter.com"
+              rel="noreferrer"
+            >
               Twitter
             </a>
             <a
