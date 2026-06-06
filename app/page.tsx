@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, ReactNode, useMemo, useState } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
@@ -311,8 +311,6 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
 }
 
 export default function Home() {
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
-
   return (
     <main className="relative isolate overflow-hidden">
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0 opacity-[0.035]" />
@@ -637,7 +635,7 @@ export default function Home() {
               Instagram
             </a>
           </div>
-          <p className="text-sm text-white/42">© {currentYear} Hora</p>
+          <p className="text-sm text-white/42">© Hora</p>
         </div>
       </footer>
     </main>
