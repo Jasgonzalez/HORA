@@ -243,22 +243,41 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+  
     const normalizedEmail = email.trim().toLowerCase();
-
+  
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
       setStatus("error");
       return;
     }
-
-    const stored = window.localStorage.getItem("hora-waitlist");
-    const waitlist = stored ? (JSON.parse(stored) as string[]) : [];
-    const nextWaitlist = Array.from(new Set([...waitlist, normalizedEmail]));
-
-    window.localStorage.setItem("hora-waitlist", JSON.stringify(nextWaitlist));
-    setEmail("");
-    setStatus("success");
+  
+    const source =
+      new URLSearchParams(window.location.search).get("source") || "direct";
+  
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          source,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to join waitlist");
+      }
+  
+      setEmail("");
+      setStatus("success");
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
   }
 
   return (
