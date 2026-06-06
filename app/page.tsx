@@ -327,7 +327,7 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
       <div className="min-h-6 sm:absolute">
         {status === "success" && (
           <p className="pt-1 text-center text-sm font-medium text-[#d9c7ff] sm:text-left">
-            You're on the list.
+              You&apos;re on the list.
           </p>
         )}
 
