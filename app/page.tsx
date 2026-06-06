@@ -530,7 +530,7 @@ export default function Home() {
                   AI Summary
                 </p>
                 <p className="mt-3 text-2xl font-semibold leading-snug text-white">
-                You spent 84 days at home and 6 days at the gym this year.
+                You spent 84 days at work and 6 days at the gym this year.
                 </p>
               </div>
             </div>
