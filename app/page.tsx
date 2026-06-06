@@ -48,7 +48,7 @@ const problemStats = [
   { label: "Work", value: "42h" },
   { label: "Commute", value: "11h" },
   { label: "Gym", value: "4h" },
-  { label: "Friends", value: "6h" },
+  { label: "Coffee Shops", value: "6h" },
 ];
 
 const insights = [
