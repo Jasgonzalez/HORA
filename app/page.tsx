@@ -241,21 +241,23 @@ function PhoneMockup() {
 
 function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "success" | "invalid-email" | "server-error"
+  >("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-  
+
     const normalizedEmail = email.trim().toLowerCase();
-  
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
-      setStatus("error");
+      setStatus("invalid-email");
       return;
     }
-  
+
     const source =
       new URLSearchParams(window.location.search).get("source") || "direct";
-  
+
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
@@ -267,16 +269,18 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
           source,
         }),
       });
-  
+
       if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        console.error("API ERROR:", errorData);
         throw new Error("Failed to join waitlist");
       }
-  
+
       setEmail("");
       setStatus("success");
     } catch (error) {
-      console.error(error);
-      setStatus("error");
+      console.error("WAITLIST ERROR:", error);
+      setStatus("server-error");
     }
   }
 
@@ -287,14 +291,19 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
         compact ? "max-w-xl" : "max-w-2xl"
       }`}
     >
-      <label className="sr-only" htmlFor={compact ? "hero-email" : "waitlist-email"}>
+      <label
+        className="sr-only"
+        htmlFor={compact ? "hero-email" : "waitlist-email"}
+      >
         Email address
       </label>
+
       <input
         id={compact ? "hero-email" : "waitlist-email"}
         value={email}
         onChange={(event) => {
           setEmail(event.target.value);
+
           if (status !== "idle") {
             setStatus("idle");
           }
@@ -305,6 +314,7 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
         placeholder="you@email.com"
         className="h-14 flex-1 rounded-full border border-white/10 bg-white/[0.07] px-5 text-base text-white outline-none transition placeholder:text-white/35 focus:border-[#b88cff]/70 focus:bg-white/[0.1] focus:ring-4 focus:ring-[#9d6cff]/20"
       />
+
       <motion.button
         whileHover={{ scale: 1.025, y: -1 }}
         whileTap={{ scale: 0.98 }}
@@ -313,17 +323,25 @@ function WaitlistForm({ compact = false }: { compact?: boolean }) {
       >
         Join Waitlist
       </motion.button>
+
       <div className="min-h-6 sm:absolute">
-        {status === "success" ? (
+        {status === "success" && (
           <p className="pt-1 text-center text-sm font-medium text-[#d9c7ff] sm:text-left">
-            You&apos;re on the list.
+            You're on the list.
           </p>
-        ) : null}
-        {status === "error" ? (
+        )}
+
+        {status === "invalid-email" && (
           <p className="pt-1 text-center text-sm font-medium text-red-300 sm:text-left">
             Enter a valid email.
           </p>
-        ) : null}
+        )}
+
+        {status === "server-error" && (
+          <p className="pt-1 text-center text-sm font-medium text-red-300 sm:text-left">
+            Something went wrong. Please try again.
+          </p>
+        )}
       </div>
     </form>
   );
