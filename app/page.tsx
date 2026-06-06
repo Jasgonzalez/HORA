@@ -449,13 +449,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 px-4 py-20 sm:px-6" aria-labelledby="insights-heading">
+      <section className="relative z-10 px-4 py-20 sm:px-6 text-center" aria-labelledby="insights-heading">
         <div className="mx-auto max-w-6xl">
           <motion.div {...fadeUp} className="max-w-3xl">
             <SectionEyebrow>AI insights</SectionEyebrow>
             <h2
               id="insights-heading"
-              className="text-balance text-4xl font-semibold tracking-[-0.045em] text-white sm:text-6xl"
+              className="text-balance text-4xl font-semibold tracking-[-0.045em] text-white sm:text-6xl text-center"
             >
               Turn ordinary weeks into life-changing signals.
             </h2>
